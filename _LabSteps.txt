@@ -1,4 +1,4 @@
-﻿1.	以 HTML Editor 開啟 Lab_LocalStorage.html，
+1.	以 HTML Editor 開啟 Lab_LocalStorage.html，
 	找出表單的三個文字輸入方塊，它們的 id 分別是什麼?
 
 

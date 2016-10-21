@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LocalStorage Lab</title>
+<script src="jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"></script>
+<link rel="stylesheet" href="jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.125em;
+	margin: 20px;
+}
+
+h1 {
+	text-align: center;
+	border-bottom: 2px solid #009;
+	margin-bottom: 50px;
+}
+
+fieldset {
+	margin: 1.5em 0 0 0;
+	padding: 0;
+	border: 1px solid #CCC;
+}
+
+legend {
+	margin-left: 2em;
+	color: #009;
+	font-weight: bold;
+}
+
+label {
+	float: left;
+	width: 10em;
+	margin-right: 1em;
+}
+
+fieldset ol {
+	list-style: none;
+	padding-top: 3px;
+	padding-left: 2em;
+	padding-bottom: 3px;
+}
+
+fieldset li {
+	line-height: 24px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+fieldset li input.formFields {
+	line-height: 24px;
+	height: 24px;
+	border: 1px solid #CCC;
+}
+
+fieldset .submit {
+	border-style: none;
+	width: 10em;
+	height: 3em;
+	margin: -1em auto 1em 18em;
+	
+}
+/*調整方塊大小*/
+h3.ui-widget-header{
+   text-align: right; 
+}
+/*按鈕*/
+button.button1{
+    margin-left:4%;
+    size: 16px;
+}
+
+</style>
+
+
+</head>
+
+
+
+
+<body>
+        
+	<H1>lativ</H1>
+	<p>輸入表單資料，不要按下「Send」送出，關閉瀏覽器，然後重新回到本頁，自動回復先前輸入的內容。</p>
+
+	
+	
+	
+	<form method="post" action="http://exec.hostzi.com/echo.php">
+
+  
+      <div id="resizable" class="ui-widget-content">
+  
+		<fieldset>
+			
+			<legend>會員中心</legend>
+			
+			<p><i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp可自行調整順序</i></p>
+			<ol id="sortable">
+				<li><label for="txtName">帳號:</label> <input id="txtName"
+					name="txtName" type="text" class="formFields"/></li>
+				<li><label for="txtEmail">密碼:</label> <input
+					id="txtEmail" name="txtEmail" type="text" class="formFields" /></li>
+					<li><label for="txtEmail">確認密碼:</label> <input
+					id="txtEmail" name="txtEmail" type="text" class="formFields" /></li>
+				
+				<li><label for="txtPhone">手機號碼:</label> <input
+					id="txtPhone" name="txtPhone" type="text" class="formFields" /></li>
+			
+            <input type="radio" name="sex" value="male" />男性
+            <input type="radio" name="sex" value="female" />女性
+            
+           
+ 				           
+            <button class="button1">忘記帳號</button>
+            <button class="button2">忘記密碼</button>
+ 
+          
+			</ol>
+            
+			<input id="btnSubmit" name="btnSubmit" type="submit" class="submit"
+				value="登入" />
+			
+          <!--調整大小-->
+          <h3 class="ui-widget-header">沒事別亂拉</h3>
+          
+     
+		
+		</fieldset>
+        
+    </div>
+
+		<!--菜單-->
+		
+     
+	</form>
+
+<span id="test"></span>
+
+
+　<!--引用jquery-ui-->
+ 
+  
+
+
+<script>
+
+alert("老闆又跳樓了 今日本館買2000送1000 要買要快");
+
+function doChange (){
+	document.getElementById("test").innerHTML += this.name +":" + this.value +"<br>"; //取得資料
+	localStorage.setItem(this.name, this.value);
+}
+document.getElementById("txtName").onkeyup = doChange;
+document.getElementById("txtEmail").onkeyup = doChange;
+document.getElementById("txtPhone").onkeyup = doChange;
+
+	function readAndShow() {
+		if (localStorage["txtName"])
+			document.getElementById("txtName").value = localStorage["txtName"];
+		if (localStorage["txtEmail"])
+			document.getElementById("txtEmail").value = localStorage["txtEmail"];
+		if (localStorage["txtPhone"])
+			document.getElementById("txtPhone").value = localStorage["txtPhone"];
+	}
+	
+	window.onload = readAndShow;  //將上述取得的資料顯示出來
+	
+	
+
+	document.forms[0].onsubmit = function () { localStorage.clear(); };
+	
+	localStorage.clear();
+
+　//	localStorage.clear();  //呼叫清除方法  清除資料 重開網頁後 紀錄便不見
+	
+	
+	// 　以下引用的jqurey ui
+	
+//可調整順序	
+   $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  
+//可調整方塊大小
+$( function() {
+    $( "#resizable" ).resizable();
+  } );
+// 按鈕
+$( function() {
+    $( ".widget input[type=submit], .widget a, .widget button" ).button();
+    $( "button, input, a" ).click( function( event ) {
+      event.preventDefault();
+    } );
+  } );
+// checkbox
+$( function() {
+    $( "input" ).checkboxradio();
+  } );
+
+    </script>
+
+
+</body>
+</html>
